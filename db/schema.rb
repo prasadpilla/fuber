@@ -23,21 +23,25 @@ ActiveRecord::Schema.define(version: 20161124163255) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer  "status"
-    t.float    "source",       null: false
-    t.float    "destination",  null: false
+    t.string   "cab_type"
+    t.float    "source_lat",      null: false
+    t.float    "source_lng",      null: false
+    t.float    "destination_lat", null: false
+    t.float    "destination_lng", null: false
     t.integer  "cab_id"
     t.integer  "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "bookings", ["cab_id"], name: "index_bookings_on_cab_id", using: :btree
   add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
 
   create_table "cab_types", force: :cascade do |t|
-    t.string   "type"
+    t.string   "cab_type"
     t.decimal  "base_fare",               null: false
     t.decimal  "per_mile_fare",           null: false
+    t.decimal  "per_minute_fare",         null: false
     t.decimal  "miles_with_in_base_fare", null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
@@ -47,18 +51,15 @@ ActiveRecord::Schema.define(version: 20161124163255) do
     t.string   "cab_model"
     t.string   "reg_no"
     t.string   "color"
-    t.integer  "booking_id"
+    t.boolean  "available"
     t.integer  "cab_type_id"
-    t.integer  "driver_id"
     t.float    "lat"
     t.float    "lng"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "cabs", ["booking_id"], name: "index_cabs_on_booking_id", using: :btree
   add_index "cabs", ["cab_type_id"], name: "index_cabs_on_cab_type_id", using: :btree
-  add_index "cabs", ["driver_id"], name: "index_cabs_on_driver_id", using: :btree
   add_index "cabs", ["lat"], name: "index_cabs_on_lat", using: :btree
   add_index "cabs", ["lng"], name: "index_cabs_on_lng", using: :btree
 

@@ -12,6 +12,9 @@ gem 'pg'
 
 gem 'activerecord-postgres-earthdistance'
 
+gem 'geocoder'
+
+
 group :test do
   gem 'rspec-rails', '~> 3.5', '>= 3.5.1'
   gem 'shoulda-matchers', '~> 3.1'

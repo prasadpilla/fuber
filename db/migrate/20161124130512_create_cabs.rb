@@ -4,9 +4,8 @@ class CreateCabs < ActiveRecord::Migration
       t.string :cab_model
       t.string :reg_no
       t.string :color
-      t.integer :booking_id, index: true
+      t.boolean :available
       t.integer :cab_type_id, index: true
-      t.integer :driver_id, index: true
       t.float :lat, limit:10, index:true
       t.float :lng, limit:10, index:true
 
